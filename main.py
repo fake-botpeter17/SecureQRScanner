@@ -16,7 +16,7 @@ def scan():
 
     data = scan_qr(img)
 
-    return jsonify(data, 200)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

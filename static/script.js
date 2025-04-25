@@ -24,12 +24,22 @@ function checkPrivacyThreats(content) {
 }
 
 // Fake AI chatbot explanation
-function getAIExplanation(content) {
-  if (content.startsWith('http')) {
-    return `This QR code links to ${content}, which seems like a web address. Proceed with caution.`;
+async function getAIExplanation(content) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5001/scan?url=${encodeURIComponent(content)}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const explanation = await response.text();
+    return explanation;
+  } catch (err) {
+    console.error('Fetch error:', err);
+    return '⚠️ Could not fetch explanation.';
   }
-  return `This QR code contains text: "${content.slice(0, 100)}..."`;
 }
+
 
 // Fake QR image quality check
 function detectFakeQR(image) {
@@ -76,7 +86,8 @@ input.addEventListener('change', async () => {
             <p><strong>Risk Level:</strong> ${analysis.risk}</p>
             <p><strong>Reason:</strong> ${analysis.reason}</p>`;
         }
-        results.innerHTML += `<p><strong>AI Explainer:</strong> ${getAIExplanation(content)}</p>`;
+        const explanation = await getAIExplanation(content);
+        results.innerHTML += `<p><strong>AI Explainer:</strong> ${explanation}</p>`;
         const privacyFlags = checkPrivacyThreats(content);
         if (privacyFlags.length) {
           results.innerHTML += `<p><strong>⚠️ Privacy Alert:</strong> data fields detected: ${privacyFlags.join(', ')}</p>`;
