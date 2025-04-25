@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure QR Code Scanner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>SECURE QR CODE SCANNER</h1>
+
+  <div class="upload-container">
+    <label class="custom-upload" for="qrInput">Upload QR Code</label>
+    <input type="file" id="qrInput" accept="image/*" />
+    <button id="resetBtn" style="display: none;">Reset</button>
+
+    <div id="qrPreview" style="display: none;">
+      <h3>Uploaded QR Code:</h3>
+      <img id="qrImage" src="" alt="QR Preview" />
+    </div>
+    
+    <div id="statusMsg" class="status-message"></div>
+    <div id="results" class="results"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
