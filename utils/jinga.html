@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure AI QR Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2em;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 2em;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .preview {
+            margin-top: 1em;
+        }
+        .result {
+            margin-top: 2em;
+            padding: 1em;
+            border-radius: 6px;
+        }
+        .valid {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .invalid {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Secure AI QR Scanner</h2>
+
+        <form action="{{ url_for('scan_qr') }}" method="POST" enctype="multipart/form-data">
+            <label for="qr_file">Upload QR Code Image:</label><br>
+            <input type="file" id="qr_file" name="qr_file" accept="image/*" required><br><br>
+            <button type="submit">Scan QR Code</button>
+        </form>
+
+        {% if preview_image %}
+            <div class="preview">
+                <h4>Preview:</h4>
+                <img src="{{ preview_image }}" alt="QR Preview" style="max-width:100%;">
+            </div>
+        {% endif %}
+
+        {% if result %}
+            <div class="result {% if result.valid %}valid{% else %}invalid{% endif %}">
+                <strong>AI Analysis Result:</strong><br>
+                URL: {{ result.url }}<br>
+                Status: {% if result.valid %}✅ Verified{% else %}❌ Malicious or Invalid{% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
