@@ -79,6 +79,7 @@ input.addEventListener('change', async () => {
       if (code) {
         const content = code.data;
         results.innerHTML += `<p><strong>QR Content:</strong> ${content}</p>`;
+        results.innerHTML += `<br><a href=${content}>Click Here to Open</a>`;
         if (content.startsWith('http')) {
           const analysis = analyzeURLSafety(content);
           results.innerHTML += `
@@ -87,7 +88,7 @@ input.addEventListener('change', async () => {
             <p><strong>Reason:</strong> ${analysis.reason}</p>`;
         }
         const explanationn = await getAIExplanation(content);
-        results.innerHTML += `<p><strong>AI Explainer:</strong> ${explanationn}</p>`;
+        results.innerHTML += `<br><p><strong>AI Explainer:</strong><br> ${explanationn}</p>`;
         const privacyFlags = checkPrivacyThreats(content);
         if (privacyFlags.length) {
           results.innerHTML += `<p><strong>⚠️ Privacy Alert:</strong> data fields detected: ${privacyFlags.join(', ')}</p>`;
