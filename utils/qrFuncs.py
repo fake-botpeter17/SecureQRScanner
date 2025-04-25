@@ -1,6 +1,6 @@
 from pyzbar.pyzbar import decode
 from PIL import Image
-from io import BytesIO io
+from io import BytesIO
 
 def get_img(file):
     return Image.open(BytesIO(file.read()))

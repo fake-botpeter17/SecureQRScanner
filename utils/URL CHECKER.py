@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify, redirect
 import requests
 import re
+from os import getenv 
 
 app = Flask(__name__)
 
 # Replace this with your Google Safe Browsing API Key
-GOOGLE_API_KEY = 'YOUR_GOOGLE_SAFE_BROWSING_API_KEY'
+GOOGLE_API_KEY = getenv('SAFE_URL_API')
 
 def is_url_safe_google(url):
     safe_browsing_url = f'https://safebrowsing.googleapis.com/v4/threatMatches:find?key={GOOGLE_API_KEY}'
