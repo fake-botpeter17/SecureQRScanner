@@ -79,7 +79,7 @@ input.addEventListener('change', async () => {
       if (code) {
         const content = code.data;
         results.innerHTML += `<p><strong>QR Content:</strong> ${content}</p>`;
-        results.innerHTML += `<br><a href=${content}>Click Here to Open</a>`;
+        results.innerHTML += `<br><a href=${content} target = _blank>Click Here to Open</a><br><br>`;
         if (content.startsWith('http')) {
           const analysis = analyzeURLSafety(content);
           results.innerHTML += `
