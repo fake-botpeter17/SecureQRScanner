@@ -86,8 +86,8 @@ input.addEventListener('change', async () => {
             <p><strong>Risk Level:</strong> ${analysis.risk}</p>
             <p><strong>Reason:</strong> ${analysis.reason}</p>`;
         }
-        const explanation = await getAIExplanation(content);
-        results.innerHTML += `<p><strong>AI Explainer:</strong> ${explanation}</p>`;
+        const explanationn = await getAIExplanation(content);
+        results.innerHTML += `<p><strong>AI Explainer:</strong> ${explanationn}</p>`;
         const privacyFlags = checkPrivacyThreats(content);
         if (privacyFlags.length) {
           results.innerHTML += `<p><strong>⚠️ Privacy Alert:</strong> data fields detected: ${privacyFlags.join(', ')}</p>`;

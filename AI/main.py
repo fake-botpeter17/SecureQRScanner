@@ -1,6 +1,7 @@
 from google import genai
 from flask import Flask, request, jsonify
 from os import getenv
+from flask_cors import CORS
 
 client = genai.Client(api_key=getenv("GeminiAPI"))
 
@@ -20,7 +21,7 @@ Now, the URL you will be given is: "{}"
 '''
 
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/scan', methods=['GET'])
 def scan():
     url = request.args.get('url')
@@ -31,7 +32,7 @@ def scan():
         contents=prompt.format(url)
     )
     print(response.text)
-    return response.text, 200, {'Content-Type': 'text/plain'}
+    return response.text
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
