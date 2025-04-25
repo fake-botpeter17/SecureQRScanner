@@ -17,6 +17,8 @@ A Secure QR Scanner helps users safely scan QR codes by checking for potential t
  🔷 __User Privacy:__ Ensures no personal data is shared or stored during scanning. 🔐
 
  ## PROJECT STRUCTURE
+ 
+![ STRUCTURE](https://github.com/user-attachments/assets/9cce7b37-cdda-4e3f-a054-ef52f51d2a24)
 
 
  ## HOW TO ACCESS
@@ -32,16 +34,9 @@ python main.py
 - **HTML** 🌐
 - **CSS** 🎨
 
-
 ## 🔧 Backend
 - **PYTHON** 🐍
 - **FLASK** 🧪
-
-
-## 🔍 AI & Security
-- **TensorFlow.js** 🤖 / **PyTorch** 🧠
-- **Scikit-learn** 📊
-- **CryptoJS** 🔒
 
 ## 📷 QR Scanning
 - **PILLOW** 🌀
